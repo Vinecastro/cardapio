@@ -1,0 +1,127 @@
+/* Menu.css */
+
+/* Definindo um fundo escuro e fontes claras */
+:root {
+  --primary-bg-color: #121212;
+  --secondary-bg-color: #1c1c1c;
+  --highlight-color: #ffcc00;
+  --text-color: #ffffff;
+  --border-color: #444444;
+  --card-bg-color: #333333;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --highlight-shadow: rgba(255, 204, 0, 0.5);
+}
+
+/* Estilo geral do container */
+.menu-container {
+  background-color: var(--primary-bg-color);
+  color: var(--text-color);
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+/* Título do menu */
+.menu-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--highlight-color);
+}
+
+/* Estilo para o select do filtro */
+.select-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.category-select {
+  background-color: var(--secondary-bg-color);
+  border: 2px solid var(--border-color);
+  color: var(--text-color);
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  width: 200px;
+  font-family: 'Roboto', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.category-select:hover {
+  background-color: var(--highlight-color);
+  cursor: pointer;
+}
+
+/* Estilo das seções do menu */
+.menu-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-around;
+}
+
+/* Estilo de cada card de item */
+.menu-item-card {
+  background-color: var(--card-bg-color);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  width: calc(33% - 20px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+}
+
+.menu-item-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 15px var(--highlight-shadow);
+}
+
+/* Nome do item */
+.item-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--highlight-color);
+  margin-bottom: 10px;
+}
+
+/* Descrição do item */
+.item-description {
+  font-size: 1rem;
+  color: #dddddd;
+  margin-bottom: 15px;
+}
+
+/* Preço do item */
+.item-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--highlight-color);
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .menu-item-card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-item-card {
+    width: calc(100% - 20px);
+  }
+
+  .category-select {
+    width: 180px;
+    font-size: 1.1rem;
+  }
+
+  .menu-title {
+    font-size: 2.5rem;
+  }
+}
