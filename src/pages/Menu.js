@@ -1,119 +1,85 @@
 import React, { useState } from "react";
 import '../style/Menu.css'; // Importando o CSS do menu
 
-// Itens de Menu
+// Itens de Menu com imagens da web
 const beerMenu = [
   {
     category: "Cervejas",
     items: [
-      // Skol
-      { name: "Skol", price: "R$ 6,50", description: "Cerveja lager com sabor suave e de fácil paladar." },
-      { name: "Skol Lata", price: "R$ 8,00", description: "Skol em lata, sabor leve e fácil de carregar." },
-      { name: "Skol Litro", price: "R$ 16,00", description: "Skol em garrafa de 1 litro, sabor leve e ideal para festas." },
-
-      // Brahma
-      { name: "Brahma", price: "R$ 6,80", description: "Cerveja com sabor suave e ideal para todas as ocasiões." },
-      { name: "Brahma Lata", price: "R$ 8,00", description: "Brahma em lata, a cerveja ideal para todas as ocasiões." },
-      { name: "Brahma Litro", price: "R$ 16,50", description: "Brahma em garrafa de 1 litro, sabor clássico em grande volume." },
-
-      // Antártica
-      { name: "Antártica", price: "R$ 7,00", description: "Cerveja tipo pilsen com sabor leve e refrescante." },
-      { name: "Antártica Lata", price: "R$ 8,50", description: "Antártica em lata, sabor leve e refrescante." },
-      { name: "Antártica Litro", price: "R$ 17,00", description: "Antártica em garrafa de 1 litro, sabor leve e refrescante." },
-
-      // Budweiser
-      { name: "Budweiser", price: "R$ 7,50", description: "Cerveja lager com um sabor encorpado e uma leve nota de malte." },
-      { name: "Budweiser Lata", price: "R$ 9,50", description: "Cerveja Budweiser em lata, o sabor encorpado em versão compacta." },
-      { name: "Budweiser Litro", price: "R$ 17,50", description: "Budweiser em garrafa de 1 litro, ideal para quem quer mais sabor." },
-
-      // Heineken
-      { name: "Heineken", price: "R$ 8,00", description: "Cerveja lager premium com um sabor leve e refrescante." },
-      { name: "Heineken Lata", price: "R$ 10,00", description: "Cerveja Heineken em lata, praticidade e sabor refrescante." },
-      { name: "Heineken Litro", price: "R$ 18,00", description: "Heineken em garrafa de 1 litro, sabor refrescante e em grande volume." },
-
-      // Corona
-      { name: "Corona", price: "R$ 9,00", description: "Cerveja mexicana com sabor leve e refrescante." },
-      { name: "Corona Lata", price: "R$ 10,50", description: "Corona em lata, um toque refrescante e prático." },
-      { name: "Corona Litro", price: "R$ 19,00", description: "Corona em garrafa de 1 litro, refrescante e de grande volume." },
-
-      // Bud Light
-      { name: "Bud Light", price: "R$ 8,30", description: "Cerveja leve com baixo teor alcoólico e sabor refrescante." },
-
-      // Original
-      { name: "Original", price: "R$ 8,50", description: "Cerveja encorpada com um toque amargo." },
-      { name: "Original Lata", price: "R$ 9,00", description: "Original em lata, um sabor encorpado e prático." },
-
-      // Stella Artois
-      { name: "Stella Artois", price: "R$ 9,50", description: "Cerveja belga com sabor refinado e elegante." }
+      { name: "Skol", price: "R$ 6,50", image: "https://cdn.formulaexpress.com.br/img/p/1/9/8/198-large_default.jpg" },
+      { name: "Skol Lata", price: "R$ 8,00", image: "https://savegnagoio.vtexassets.com/arquivos/ids/451158/CervejaSkolPilsenLata350ml1.jpg?v=638610711235400000" },
+      { name: "Brahma", price: "R$ 6,80", image: "https://cdn.formulaexpress.com.br/img/p/1/9/7/197-thickbox_default.jpg" },
+      { name: "Brahma Lata", price: "R$ 8,00", image: "https://mercantilatacado.vtexassets.com/arquivos/ids/168508/65391b486a2a15a1bb6c1b6f.jpg?v=638338381590100000" },
+      { name: "Brahma Litro", price: "R$ 16,50", image: "https://ibassets.com.br/ib.item.image.large/l-f8a2cdcdfd064b4593152020fc0b72d0.jpeg" },
+      { name: "Original", price: "R$ 8,50", image: "https://cdn.formulaexpress.com.br/img/p/3/7/37.jpg" },
+      { name: "Spaten", price: "R$ 8,30", image: "https://www.arenaatacado.com.br/on/demandware.static/-/Sites-storefront-catalog-sv/default/dwbb8d8c53/Produtos/882968-7891991297547-cerveja%20nacional%20spaten%20munich%20puro%20malte%20garrafa%20600ml-spaten-1.jpg" },
+      { name: "Heineken", price: "R$ 12,00", image: "https://carrefourbrfood.vtexassets.com/arquivos/ids/23256934/cerveja-heineken-garrafa-600-ml-1.jpg?v=637655997827630000" },
+      { name: "Heineken Long Neck", price: "R$ 10,00", image: "https://changlee.com.br/wp-content/uploads/2016/12/554244-Cerveja-Heineken-Long-Neck-355ml.png" },
+      { name: "Budweiser", price: "R$ 10,00", image: "https://carrefourbrfood.vtexassets.com/arquivos/ids/134558686/cerveja-budweiser-american-lager-330ml-long-neck-1.jpg?v=638364442432970000" },
+      { name: "Corona", price: "R$ 9,00", image: "https://marmoreio.com.br/wp-content/uploads/2020/05/corona-long-neck-Copia-2.jpg" },
+      { name: "Stella Artois", price: "R$ 9,50", image: "https://mercantilnovaera.vtexassets.com/arquivos/ids/210044-800-450?v=638290020074200000&width=800&height=450&aspect=true" },
+      
     ]
   },
   {
     category: "Porções",
     items: [
-      { name: "Batatas Fritas", price: "R$ 18,00", description: "Porção de batatas fritas crocantes." },
-      { name: "Onion Rings", price: "R$ 22,00", description: "Anéis de cebola empanados e crocantes." },
-      { name: "Frango à Passarinho", price: "R$ 25,00", description: "Frango frito crocante com tempero especial." },
-      { name: "Tiras de Peixe Empanadas", price: "R$ 28,00", description: "Peixe empanado servido com molho tartar." }
+      { name: "Batatas Fritas", price: "R$ 18,00", image: "https://img.elo7.com.br/product/zoom/13B026B/porcao-de-batata-frita-fria-gordurenta-comida.jpg" },
+      { name: "Calabresa", price: "R$ 22,00", image: "https://img.freepik.com/fotos-premium/detalhe-da-porcao-de-linguica-calabresa-grelhada-com-cebola_92534-4623.jpg" },
+      { name: "Frango a Passarinho", price: "R$ 28,00", image: "https://i.ytimg.com/vi/hDFh7LqkTcU/sddefault.jpg" },
+      { name: "Pastel", price: "R$ 20,00", image: "https://www.rbsdirect.com.br/filestore/8/4/1/7/6/2/4_a8e0c858f9c3845/4267148_5785f8705bf0f66.jpg?w=700" },
     ]
   },
   {
     category: "Drinks",
     items: [
-      { name: "Caipirinha", price: "R$ 15,00", description: "Drink tradicional com cachaça, limão e açúcar." },
-      { name: "Mojito", price: "R$ 18,00", description: "Drink refrescante com rum, hortelã e limão." },
-      { name: "Piña Colada", price: "R$ 20,00", description: "Drink cremoso com rum, leite de coco e abacaxi." },
-      { name: "Gin Tônica", price: "R$ 22,00", description: "Drink com gin e tônica, refrescante e delicioso." }
+      { name: "Caipirinha", price: "R$ 15,00", image: "https://static.vecteezy.com/ti/fotos-gratis/t1/12175473-copo-de-caipirinha-foto.jpg" },
+      { name: "Mojito", price: "R$ 18,00", image: "https://www.simplejoy.com/wp-content/uploads/2024/04/mojito.jpg" },
+      { name: "Piña Colada", price: "R$ 20,00", image: "https://www.receitasnestle.com.br/sites/default/files/srh_recipes/011532f78bb086f63b24f0adca73e8ef.jpeg" },
+      { name: "Gin Tônica", price: "R$ 22,00", image: "https://www.bullhof.com.br/cdn/shop/articles/3_1200x1200.png?v=1636491023" },
     ]
   },
   {
     category: "Sem Álcool",
     items: [
-      { name: "Suco de Laranja", price: "R$ 10,00", description: "Suco natural de laranja." },
-      { name: "Água de Coco", price: "R$ 8,00", description: "Água de coco geladinha e refrescante." },
-      { name: "Suco de Abacaxi", price: "R$ 12,00", description: "Suco natural de abacaxi." },
-      { name: "Chá Gelado", price: "R$ 9,00", description: "Chá gelado de limão e hortelã, refrescante." },
-      { name: "Suco de Morango", price: "R$ 12,00", description: "Suco natural de morango fresco." },
-      { name: "Suco de Uva", price: "R$ 11,00", description: "Suco 100% natural de uva." },
-      { name: "Suco de Melancia", price: "R$ 10,50", description: "Suco natural e refrescante de melancia." },
-      { name: "Limonada Suíça", price: "R$ 11,50", description: "Limonada feita com limão siciliano e adoçada na medida." },
-      { name: "Água Aromatizada", price: "R$ 8,50", description: "Água com infusão de frutas frescas." },
-      { name: "Suco de Manga", price: "R$ 13,00", description: "Suco natural de manga, refrescante e doce." }
+      { name: "Água", price: "R$ 8,50", image: "https://tb0932.vtexassets.com/arquivos/ids/162415/112940.png?v=637705334878500000" },
+      { name: "Água com gás", price: "R$ 9,00", image: "https://carrefourbrfood.vtexassets.com/arquivos/ids/18904682/agua-mineral-com-gas-crystal-500ml-1.jpg?v=637590231096200000" },
+      { name: "Água de Coco", price: "R$ 8,00", image: "https://ibassets.com.br/ib.item.image.large/l-d4b49557229e4ce6b82abaf4cab5961a.jpeg" },
+      { name: "Suco de Laranja", price: "R$ 10,00", image: "https://storage.googleapis.com/domain-images/06c5ca84-e308-4cad-8b0a-ece554dd990c/products/gallery_ffd2e63a-a707-4c47-9380-55f375e97df1.jpg" },
+      { name: "Coca Lata", price: "R$ 11,00", image: "https://andinacocacola.vtexassets.com/arquivos/ids/158593/SKUs-Ecommerce--1000-x-1000-px---9-.jpg?v=638703085487330000" },
+      { name: "Cola 2L", price: "R$ 10,50", image: "https://coopsp.vtexassets.com/arquivos/ids/224479-800-auto?v=637919585207130000&width=800&height=auto&aspect=true" },
+      { name: "Guárana", price: "R$ 11,50", image: "https://brf.file.force.com/servlet/servlet.ImageServer?id=015U600000025zh&oid=00D410000012TJa&lastMod=1703691077000" },
+      { name: "Gatorade", price: "R$ 13,00", image: "https://www.svicente.com.br/on/demandware.static/-/Sites-storefront-catalog-sv/default/dw4aa2b0ab/Produtos/993255-7892840822019-isotonico%20gatorade%20berry%20blue%20pet%20-%20500ml-gatorade-1.jpg" },
     ]
   }
 ];
 
 const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState("Cervejas");
-
-  // Filtra os itens com base na categoria selecionada
   const filteredItems = beerMenu.find(menu => menu.category === selectedCategory);
 
   return (
     <div className="menu-container">
-      {/* Select de Categorias */}
       <div className="select-container">
         <select
           className="category-select"
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
         >
-          <option value="Cervejas">Cervejas</option>
-          <option value="Porções">Porções</option>
-          <option value="Drinks">Drinks</option>
-          <option value="Sem Álcool">Sem Álcool</option>
+          {beerMenu.map((menu, idx) => (
+            <option key={idx} value={menu.category}>{menu.category}</option>
+          ))}
         </select>
       </div>
 
-      {/* Título do Menu */}
       <h1 className="menu-title">{selectedCategory}</h1>
 
-      {/* Exibição dos Itens do Menu */}
       {filteredItems && (
         <div className="menu-items">
           {filteredItems.items.map((item, idx) => (
             <div key={idx} className="menu-item-card">
               <h3 className="item-name">{item.name}</h3>
-              <p className="item-description">{item.description}</p>
+              <img src={item.image} alt={item.name} className="item-image" />
               <p className="item-price">{item.price}</p>
             </div>
           ))}
